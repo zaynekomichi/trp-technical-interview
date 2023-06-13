@@ -1,0 +1,1 @@
+const tradingTokens:string = "https://tokens.coingecko.com/uniswap/all.json";
