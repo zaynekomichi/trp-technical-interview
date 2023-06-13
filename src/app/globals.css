@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+    --primaryDark:#1A1A1A;
+    --primaryLight:#DAED06;
+    --generalHeight:45px;
+}
+
+body{
+ margin: 0px;
+ padding: 0px;
+}
+.btnPrimary{
+    background-color: var(--primaryDark);
+    transition: linear;
+    padding: 10px;
+    height: var(--generalHeight);
+    color: white;
+}
+
+.btnPrimary:hover{
+    transition: 0.5s;
+    background-color: var(--primaryLight);
+    color: var(--primaryDark);
+}
+
+.inputPrimary{
+    height: var(--generalHeight);
+    border: 3px solid var(--primaryDark);
+    transition: linear;
+    width: 15em;
+}
+
+.inputPrimary:active{
+    border-color: var(--primaryLight);
+}
+
