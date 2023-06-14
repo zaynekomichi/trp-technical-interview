@@ -1,12 +1,15 @@
 'use client'
 import { useEffect,useState } from "react"
 import { getOrderBook } from "../api/api_functions"
+import { useContext } from "react"
+import { TokenContext } from "../components/contexts"
 
 export default function OrderBookView(){
+    const {currentTokens,setCurrentTokens}:any = useContext(TokenContext)
     const [orderBookData,setOrderBookData] =useState<Array<any>>()
 
     useEffect(()=>{
-        getOrderBook("0x20775d300BdE943Ac260995E977fb915fB01f399","0x20775d300BdE943Ac260995E977fb915fB01f399").then(res=>{
+        getOrderBook(currentTokens.token_1.address,currentTokens.token_2.address).then(res=>{
             if(res.status==200){
                 console.log(res.data)
             }else{
@@ -21,7 +24,7 @@ export default function OrderBookView(){
     return(
         <div className="shadow">
             <div>
-                <h1>Order Book</h1>
+                <h1>Order Book- {currentTokens.token_1.symbol}|{currentTokens.token_2.symbol}</h1>
             </div>
             <div>
                 

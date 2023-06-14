@@ -4,6 +4,8 @@ import { generalBtn, generalInput,searchTokenDropdown } from "../components/cssS
 import { Tooltip } from 'react-tooltip'
 import { search } from "ss-search"
 import { getTokenList } from "../api/api_functions"
+import { useContext } from "react"
+import { TokenContext } from "../components/contexts"
 
 interface tokensDataType{
     name:string,
@@ -13,12 +15,9 @@ interface tokensDataType{
 }
 
 export default function TradingPairView(){
+    const {currentTokens,setCurrentTokens}:any = useContext(TokenContext)
     const [token_1,setToken_1]=useState<string>("")
     const [token_2,setToken_2]=useState<string>("")
-    // const [keyPairs,setKeyPairs] = useState({
-    //     token_1:"",
-    //     token_2:""
-    // })
     const [hide,setHide] = useState({
         token_1:true,
         token_2:true
