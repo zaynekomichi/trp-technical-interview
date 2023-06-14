@@ -8,7 +8,8 @@ import { getTokenList } from "../api/api_functions"
 interface tokensDataType{
     name:string,
     symbol:string,
-    logoURI:string
+    logoURI:string,
+    address:string
 }
 
 export default function TradingPairView(){
@@ -102,6 +103,7 @@ export default function TradingPairView(){
                                         <div>
                                         <p>{item.symbol}</p>
                                         </div>
+                                        <div><p>{item.address}</p></div>
                                     </div>
                                 )
                             })

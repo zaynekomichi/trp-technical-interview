@@ -1,1 +1,1 @@
-export const tradingTokens:string = "https://tokens.coingecko.com/uniswap/all.json";
+export const tradingTokens:string = "https://wispy-bird-88a7.uniswap.workers.dev/?url=http://stablecoin.cmc.eth.link"//"https://tokens.coingecko.com/uniswap/all.json";
