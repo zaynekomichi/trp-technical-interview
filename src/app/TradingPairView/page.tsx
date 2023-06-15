@@ -63,7 +63,7 @@ export default function TradingPairView(){
         })
     },[])
     return(
-        <div className="">
+        <div className="m-10">
             <div className={generalModal}>
             <div className="" >
                 <div className="mb-5">

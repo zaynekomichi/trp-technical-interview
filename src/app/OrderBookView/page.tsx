@@ -34,19 +34,48 @@ export default function OrderBookView(){
         webSocketResData.push(resData.payload[0].order)
             setOrderBookData(webSocketResData)
         }
-    },[])
+    },[currentTokens])
 
 
     return(
-        <div className={generalModal}>
+        <div>
             <div>
-                <h1>Order Book- {currentTokens.token_1.symbol}|{currentTokens.token_2.symbol}</h1>
+                <h1>Order Book State- {currentTokens.token_1.symbol}|{currentTokens.token_2.symbol}</h1>
             </div>
-            <div className="flex">
-            <div>
-                <h1>Asks</h1>
+            <div className="flex flex-wrap justify-between">
+            <div className={generalModal}>
+                <h1>Current State</h1>
                 
-            <table className="table-auto">
+            <table className="table-fixed">
+                <thead>
+                    <tr>
+                        <th>Maker Amount</th>
+                        <th>Taker Amount</th>
+                        <th>Total - USD</th>
+                    </tr>
+                </thead>
+           
+            <tbody>
+                {
+                    orderBookData?.map((item:any,index:number)=>{
+                       
+                        return(
+                            <tr key={index}>
+                                <td><small>{item.makerAmount}</small></td>
+                                <td><small>{item.takerAmount}</small></td>
+                                <td><small>{item.takerTokenFeeAmount}</small></td>
+                            </tr>
+                        )
+                    })
+                }
+            </tbody>
+        </table>
+            </div>
+            
+            <div className={generalModal}>
+                <h1>Live Orders</h1>
+                
+            <table className="table-fixed">
                 <thead>
                     <tr>
                         <th>Maker Amount</th>
