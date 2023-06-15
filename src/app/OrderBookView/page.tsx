@@ -42,11 +42,11 @@ export default function OrderBookView(){
             <div>
                 <h1>Order Book State- {currentTokens.token_1.symbol}|{currentTokens.token_2.symbol}</h1>
             </div>
-            <div className="flex flex-wrap justify-between">
+            <div className="d-flex flex-wrap justify-content-between">
             <div className={generalModal}>
                 <h1>Current State</h1>
                 
-            <table className="table-fixed">
+            <table className="table table-striped tableProp">
                 <thead>
                     <tr>
                         <th>Maker Amount</th>
@@ -75,7 +75,7 @@ export default function OrderBookView(){
             <div className={generalModal}>
                 <h1>Live Orders</h1>
                 
-            <table className="table-fixed">
+            <table className="table table-striped tableProp overflow">
                 <thead>
                     <tr>
                         <th>Maker Amount</th>

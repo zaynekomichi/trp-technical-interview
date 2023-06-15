@@ -18,7 +18,7 @@ export default function Home() {
   return (
    <div className="m-5">
     <TokenContext.Provider value={{currentTokens,setCurrentTokens}}>
-      <div className="flex flex-wrap justify-between">
+      <div className="d-flex flex-wrap justify-content-evenly">
       <OrderBookView />
       <TradingPairView/>
       </div>

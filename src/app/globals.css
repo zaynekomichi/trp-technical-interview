@@ -1,6 +1,6 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
 :root{
     --primaryDark:#1A1A1A;
@@ -37,3 +37,9 @@ body{
     border-color: var(--primaryLight);
 }
 
+
+.tableProp{
+    height: 40vh;
+    width: 20vw;
+
+}
