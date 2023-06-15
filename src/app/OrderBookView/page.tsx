@@ -16,7 +16,7 @@ export default function OrderBookView(){
             "channel": "orders",  
             "requestId": "123e4567-e89b-12d3-a456-426655440000", 
             "makerToken":currentTokens.token_1.address,
-            "takerToken":currentTokens.token_2.address
+            "takerToken":currentTokens.token_2.address,
         }
         const webSocketOB = OrderBookWebsocket()
         webSocketOB.onopen=(res)=>{
@@ -25,10 +25,10 @@ export default function OrderBookView(){
          }
        
         webSocketOB.onmessage=(res)=>{
-            console.log(res.data.payload.order)
-            // setOrderBookData([...orderBookData,JSON.parse(res.data.payload.order)])
+            console.log(JSON.parse(res.data))
+            // setOrderBookData([...orderBookData,JSON.parse(res.data.payload.ord)])
         }
-    },[])
+    },[currentTokens])
 
 
     return(
