@@ -1,6 +1,6 @@
 "use client"
 import { useState, useEffect } from "react"
-import { generalBtn, generalInput,searchTokenDropdown } from "../components/cssStyles"
+import { generalBtn, generalInput,generalModal,searchTokenDropdown } from "../components/cssStyles"
 import { Tooltip } from 'react-tooltip'
 import { search } from "ss-search"
 import { getTokenList } from "../api/api_functions"
@@ -46,26 +46,9 @@ export default function TradingPairView(){
         const copyCurrentTokens = {token_1,token_2}
         setToken_1(copyCurrentTokens.token_2)
         setToken_2(copyCurrentTokens.token_1)
+       
     }
-
-    const ViewResults=()=>{
-        tokens?.map((item:tokensDataType,index:number)=>{
-            return(
-                <div key={index} className="flex flex-row m-4 justify-between ">
-                    <div>
-                        <img src={item.logoURI} width="20px" className="rounded" alt={`image of ${item.name} logo`}/>
-                    </div>
-                  
-                    <div>
-                    <p>{item.symbol}</p>
-                    </div>
-                      <div>
-                    <p>{item.name}</p>
-                    </div>         
-                </div>
-            )
-        })
-    }
+    
 
     useEffect(()=>{
         getTokenList().then((res:any)=>{
@@ -80,21 +63,25 @@ export default function TradingPairView(){
         })
     },[])
     return(
-        <div className="container">
-            <div className="shadow border-2 bg-white m-5 rounded-2xl p-5 flex flex-wrap mb-5">
+        <div className="">
+            <div className={generalModal}>
             <div className="" >
                 <div className="mb-5">
                     <h1 className="text-xl">Trading Pairs</h1>
                 </div>
                 <div className="mb-5">
                     <div>
-                        <input className={generalInput}placeholder="Paying Token" onChange={(e)=>{setToken_1(e.target.value);searchTokens(e.target.value,true)}} value={token_1}/>
+                        <input className={generalInput}placeholder="Paying Token" onChange={(e)=>{setToken_1(e.target.value);searchTokens(e.target.value,true);}} value={token_1}/>
                     </div>
                     <div hidden={hide.token_1} className={searchTokenDropdown}>
                         {
                             tokens?.map((item:tokensDataType,index:number)=>{
                                 return(
-                                    <div key={index} className="flex flex-row m-4 justify-between cursor-pointer" onClick={()=>{setToken_1(item.symbol);setHide({...hide,token_1:true})}}>
+                                    <div key={index} className="flex flex-row m-4 justify-between cursor-pointer" onClick={()=>{
+                                        setToken_1(item.symbol);
+                                        setCurrentTokens({...currentTokens,token_1:{symbol:item.symbol,address:item.address}});
+                                        setHide({...hide,token_1:true});
+                                        }}>
                                         <div >
                                             <img src={item.logoURI} width="20px" className="rounded" alt={`image of ${item.name} logo`}/>
                                         </div>
@@ -123,7 +110,10 @@ export default function TradingPairView(){
                         {
                             tokens?.map((item:tokensDataType,index:number)=>{
                                 return(
-                                    <div key={index} className="flex flex-row m-4 justify-between " onClick={()=>{setToken_2(item.symbol);setHide({...hide,token_2:true})}}>
+                                    <div key={index} className="flex flex-row m-4 justify-between " onClick={()=>{
+                                        setToken_2(item.symbol);setCurrentTokens({...currentTokens,token_2:{symbol:item.symbol,address:item.address}});
+                                        setHide({...hide,token_2:true});
+                                        }}>
                                         <div>
                                             <img src={item.logoURI} width="20px" className="rounded" alt={`image of ${item.name} logo`}/>
                                         </div>
