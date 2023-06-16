@@ -6,6 +6,7 @@ import { search } from "ss-search"
 import { getTokenList } from "../api/api_functions"
 import { useContext } from "react"
 import { TokenContext } from "../components/contexts"
+import Link from "next/link"
 
 interface tokensDataType {
     name: string,
@@ -137,8 +138,8 @@ export default function TradingPairView() {
 
             </div>
             <div>
-                <button  className={generalBtn}>Current State</button>
-                <button className={generalBtn}>Live Changes</button>
+                <Link href="../OrderBookView/CurrentStateOB"><button  className={generalBtn}>Current State</button></Link>
+                <Link href="../OrderBookView/LiveOB"><button className={generalBtn}>Live Changes</button></Link>
             </div>
         </div>
     )

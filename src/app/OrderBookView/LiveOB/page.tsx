@@ -35,7 +35,7 @@ export default function LiveOB(){
     return(
         <div className={generalModal}>
                 <h1>Live Order Book</h1>
-            <table className="table table-striped tableProp">
+            <table className="table table-striped">
                 <thead>
                     <tr>
                         <th>Maker Amount</th>
