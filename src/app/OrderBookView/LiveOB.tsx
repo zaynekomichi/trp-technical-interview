@@ -6,16 +6,11 @@ import { TokenContext } from "../components/contexts"
 import { generalModal } from "../components/cssStyles"
 
 
-export default function OrderBookView(){
+export default function LiveOB(){
     const {currentTokens,setCurrentTokens}:any = useContext(TokenContext)
     const [orderBookData,setOrderBookData] =useState<Array<any>>([])
 
     useEffect(()=>{
-        getOrderBook(currentTokens).then(res=>{
-            console.log(res)
-        }).catch(err=>{
-            console.log(err)
-        })
         const webSocketData = {
             "type": "subscribe",
             "channel": "orders",  
@@ -34,18 +29,12 @@ export default function OrderBookView(){
         webSocketResData.push(resData.payload[0].order)
             setOrderBookData(webSocketResData)
         }
-    },[currentTokens])
+    },[currentTokens,orderBookData])
 
 
     return(
-        <div>
-            <div>
-                <h1>Order Book State- {currentTokens.token_1.symbol}|{currentTokens.token_2.symbol}</h1>
-            </div>
-            <div className="d-flex flex-wrap justify-content-between">
-            <div className={generalModal}>
-                <h1>Current State</h1>
-                
+        <div className={generalModal}>
+                <h1>Live Order Book</h1>
             <table className="table table-striped tableProp">
                 <thead>
                     <tr>
@@ -70,38 +59,6 @@ export default function OrderBookView(){
                 }
             </tbody>
         </table>
-            </div>
-            
-            <div className={generalModal}>
-                <h1>Live Orders</h1>
-                
-            <table className="table table-striped tableProp overflow">
-                <thead>
-                    <tr>
-                        <th>Maker Amount</th>
-                        <th>Taker Amount</th>
-                        <th>Total - USD</th>
-                    </tr>
-                </thead>
-           
-            <tbody>
-                {
-                    orderBookData?.map((item:any,index:number)=>{
-                       
-                        return(
-                            <tr key={index}>
-                                <td><small>{item.makerAmount}</small></td>
-                                <td><small>{item.takerAmount}</small></td>
-                                <td><small>{item.takerTokenFeeAmount}</small></td>
-                            </tr>
-                        )
-                    })
-                }
-            </tbody>
-        </table>
-            </div>
-            </div>
-            
-        </div>
+            </div>            
     )
 }

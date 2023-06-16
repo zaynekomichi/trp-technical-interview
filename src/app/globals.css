@@ -6,10 +6,11 @@
     --primaryDark:#1A1A1A;
     --primaryLight:#DAED06;
     --generalHeight:45px;
+    --generalRadius:7px;
 }
 
 body{
- margin: 0px;
+ margin: 10px;
  padding: 0px;
 }
 .btnPrimary{
@@ -20,17 +21,23 @@ body{
     color: white;
 }
 
+
 .btnPrimary:hover{
     transition: 0.5s;
+    border:none;
     background-color: var(--primaryLight);
     color: var(--primaryDark);
+    font-weight: bold;
+}
+
+.inputLogoDisplay{
+    width:50px;
 }
 
 .inputPrimary{
+    width: 25em;
     height: var(--generalHeight);
-    border: 3px solid var(--primaryDark);
     transition: linear;
-    width: 15em;
 }
 
 .inputPrimary:active{
@@ -42,4 +49,25 @@ body{
     height: 40vh;
     width: 20vw;
 
+}
+
+
+.dropdownContainer{
+    width: 25em;
+    height: 25vh;
+    overflow: auto;
+    z-index: 1;
+}
+
+.dropdownItems{
+    transition: linear;
+    overflow-y: auto;
+}
+
+.dropdownItems:hover{
+    transition: 0.5s;
+    cursor: pointer;
+    background-color: var(--primaryLight);  
+    font-weight: bold;
+    border-radius: var(--generalRadius);
 }
