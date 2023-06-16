@@ -15,7 +15,7 @@ interface tokensDataType {
 }
 
 export default function TradingPairView() {
-    const { currentTokens, setCurrentTokens }: any = useContext(TokenContext)
+    const { currentTokens, setCurrentTokens }:any= useContext(TokenContext)
     const [token_1, setToken_1] = useState<string>("")
     const [token_2, setToken_2] = useState<string>("")
     const [hide, setHide] = useState({

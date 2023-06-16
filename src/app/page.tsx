@@ -1,8 +1,8 @@
 'use client'
 import { useState } from "react"
-import LiveOB from "./OrderBookView/LiveOB/page"
+// import LiveOB from "./OrderBookView/LiveOB/page"
 import CurrentStateOB from "./OrderBookView/CurrentStateOB/page"
-import TradingPairView from "./TradingPairView/page"
+import TradingPairView from "./TradingPairView/TradePairView"
 import { TokenContext } from "./components/contexts"
 
 export default function Home() {
@@ -19,8 +19,9 @@ export default function Home() {
     }
   })
   return (
-   <div className="container-full">
     <TokenContext.Provider value={{currentTokens,setCurrentTokens}}>
+   <div className="container-full">
+    
       <div className="flex flex-row">
         <div className="col-sm">
           <TradingPairView/>
@@ -32,7 +33,8 @@ export default function Home() {
       {/* <div>
         <LiveOB/>
       </div> */}
-    </TokenContext.Provider>
+
    </div>
+   </TokenContext.Provider>
   )
 }

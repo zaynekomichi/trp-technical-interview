@@ -1,4 +1,4 @@
 import { createContext } from "react";
 
 
-export const TokenContext:any=createContext("")
+export const TokenContext:any=createContext({})
