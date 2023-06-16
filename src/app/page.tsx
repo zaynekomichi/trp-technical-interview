@@ -1,7 +1,7 @@
 'use client'
 import { useState } from "react"
-import LiveOB from "./OrderBookView/LiveOB"
-import CurrentStateOB from "./OrderBookView/CurrentStateOB"
+import LiveOB from "./OrderBookView/LiveOB/page"
+import CurrentStateOB from "./OrderBookView/CurrentStateOB/page"
 import TradingPairView from "./TradingPairView/page"
 import { TokenContext } from "./components/contexts"
 

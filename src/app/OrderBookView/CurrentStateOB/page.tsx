@@ -1,9 +1,9 @@
 'use client'
 import { useEffect,useState } from "react"
-import { OrderBookWebsocket, getOrderBook} from "../api/api_functions"
+import { OrderBookWebsocket, getOrderBook} from "../../api/api_functions"
 import { useContext } from "react"
-import { TokenContext } from "../components/contexts"
-import { generalModal } from "../components/cssStyles"
+import { TokenContext } from "../../components/contexts"
+import { generalModal } from "../../components/cssStyles"
 interface orderType{
     order:{
         makerAmount:string,
