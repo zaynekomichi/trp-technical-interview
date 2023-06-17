@@ -3,13 +3,13 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './globals.css'
 import { Inter } from 'next/font/google'
 import TradingPairView from './TradingPairView/TradePairView';
-import { useContext,useState } from 'react';
+import { useState } from 'react';
 import { TokenContext } from './components/contexts';
 
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata = {
+const metadata = {
   title: 'The Risk Protocol',
   description: 'Trade View',
 }
