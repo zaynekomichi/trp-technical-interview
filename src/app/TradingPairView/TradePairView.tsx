@@ -64,7 +64,7 @@ export default function TradingPairView() {
         })
     }, [])
     return (
-        <div className={`${generalModal} m-5`}>
+        <div className={generalModal}>
             <div className="mb-3">
                 <h4 >Trade Tokens - {currentTokens.token_1.symbol} | {currentTokens.token_2.symbol}</h4>
             </div>

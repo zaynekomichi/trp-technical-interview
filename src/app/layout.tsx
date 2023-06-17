@@ -34,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <TokenContext.Provider value={{currentTokens,setCurrentTokens}}>
+        <TokenContext.Provider value={{currentTokens,setCurrentTokens}} className="container">
         <TradingPairView/>
         {children}
         </TokenContext.Provider>
