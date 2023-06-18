@@ -41,7 +41,7 @@ export default function CurrentStateOB(){
                     <tr>
                         <th>Maker Amount</th>
                         <th>Taker Amount</th>
-                        <th>Total - USD</th>
+                        <th>Taker Fees</th>
                     </tr>
                 </thead>
            
@@ -70,7 +70,7 @@ export default function CurrentStateOB(){
                     <tr>
                         <th>Maker Amount</th>
                         <th>Taker Amount</th>
-                        <th>Total - USD</th>
+                        <th>Taker Fees</th>
                     </tr>
                 </thead>
            

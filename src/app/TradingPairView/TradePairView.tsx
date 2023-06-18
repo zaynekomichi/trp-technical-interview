@@ -138,9 +138,9 @@ export default function TradingPairView() {
 
             </div>
             <div>
-                <Link href="../OrderBookView/CurrentStateOB"><button  className={generalBtn}>Current State</button></Link>
+                <Link href="../OrderBookView/CurrentStateOB"><button  className={generalBtn} role="button" data-bs-toggle="button" aria-pressed="true">Current State</button></Link>
                         {/* close websocket connection */}
-                <Link href="../OrderBookView/LiveOB" onClick={()=>OrderBookWebsocket().close()}><button className={generalBtn}>Live Changes</button></Link>
+                <Link href="../OrderBookView/LiveOB" onClick={()=>OrderBookWebsocket().close()}><button className={generalBtn} role="button" data-bs-toggle="button" aria-pressed="true">Live Changes</button></Link>
             </div>
         </div>
     )

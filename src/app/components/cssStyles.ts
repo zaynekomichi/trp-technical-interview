@@ -1,4 +1,4 @@
-export const generalBtn:string = "btnPrimary rounded font-semibold m-2"
+export const generalBtn:string = " btn btnPrimary rounded font-semibold m-2 actives"
 export const generalInput:string = "rounded form-control p-3 inputPrimary"
 export const generalInputSideDisplay:string = "input-group-text inputLogoDisplay text-center"
 

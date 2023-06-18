@@ -30,6 +30,15 @@ body{
     font-weight: bold;
 }
 
+.btnPrimary:active{
+    transition: 0.5s;
+    border:none;
+    background-color: var(--primaryLight);
+    color: var(--primaryDark);
+    font-weight: bold;
+}
+
+
 .inputLogoDisplay{
     width:50px;
 }
