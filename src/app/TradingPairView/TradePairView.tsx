@@ -1,8 +1,8 @@
 "use client"
 import { useState, useEffect } from "react"
 import { generalBtn, generalInput, generalInputSideDisplay, generalModal, searchTokenDropdown, searchTokenDropdownItems } from "../components/cssStyles"
-import { Tooltip } from 'react-tooltip'
 import { search } from "ss-search"
+import { OrderBookWebsocket } from "../api/api_functions"
 import { getTokenList } from "../api/api_functions"
 import { useContext } from "react"
 import { TokenContext } from "../components/contexts"
@@ -139,7 +139,8 @@ export default function TradingPairView() {
             </div>
             <div>
                 <Link href="../OrderBookView/CurrentStateOB"><button  className={generalBtn}>Current State</button></Link>
-                <Link href="../OrderBookView/LiveOB"><button className={generalBtn}>Live Changes</button></Link>
+                        {/* close websocket connection */}
+                <Link href="../OrderBookView/LiveOB" onClick={()=>OrderBookWebsocket().close()}><button className={generalBtn}>Live Changes</button></Link>
             </div>
         </div>
     )

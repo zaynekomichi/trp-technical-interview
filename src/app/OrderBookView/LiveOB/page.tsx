@@ -46,7 +46,7 @@ export default function LiveOB(){
            
             <tbody>
                 {
-                    orderBookData?.map((item:any,index:number)=>{
+                    orderBookData?.slice(0,10).map((item:any,index:number)=>{
                        
                         return(
                             <tr key={index}>
@@ -55,7 +55,7 @@ export default function LiveOB(){
                                 <td><small>{item.takerTokenFeeAmount}</small></td>
                             </tr>
                         )
-                    })
+                    }).reverse()
                 }
             </tbody>
         </table>

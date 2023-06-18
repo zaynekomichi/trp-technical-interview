@@ -32,8 +32,8 @@ export default function CurrentStateOB(){
     return(
         <div className="">
            
-            <div className="row m-3">
-            <div className={`${generalModal} col-sm m-2`}>
+            <div className="d-flex justify-content-between">
+            <div className={`${generalModal} col-sm `}>
                 <h4>Asks</h4>
                 
             <table className="table table-striped ">
@@ -62,7 +62,7 @@ export default function CurrentStateOB(){
         </table>
             </div>
             
-            <div className={`${generalModal} col-sm m-2`}>
+            <div className={`${generalModal} col-sm`}>
                 <h4>Bids</h4>
                 
             <table className="table table-striped">
