@@ -25,6 +25,7 @@ export default function LiveOB(){
          }
        const webSocketResData = [...orderBookData]
         webSocketOB.onmessage=(res)=>{
+            console.log(JSON.parse(res.data))
         const resData = JSON.parse(res.data)
         webSocketResData.push(resData.payload[0].order)
             setOrderBookData(webSocketResData)
@@ -33,14 +34,14 @@ export default function LiveOB(){
 
 
     return(
-        <div className={generalModal}>
-                <h1>Live Order Book</h1>
-            <table className="table table-striped">
+        <div className={`${generalModal} bg-dark`}>
+                <h1 className="text-white">Live Order Book</h1>
+            <table className="table table-striped table-dark">
                 <thead>
                     <tr>
                         <th>Maker Amount</th>
                         <th>Taker Amount</th>
-                        <th>Total - USD</th>
+                        <th>Taker Fees</th>
                     </tr>
                 </thead>
            

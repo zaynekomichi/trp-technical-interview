@@ -80,3 +80,9 @@ body{
     font-weight: bold;
     border-radius: var(--generalRadius);
 }
+
+.trHover:hover{
+    cursor: pointer;
+    background-color: var(--primaryLight);
+    color: var(--primaryDark);
+}

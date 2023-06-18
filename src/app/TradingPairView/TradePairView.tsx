@@ -35,7 +35,7 @@ export default function TradingPairView() {
         if (value.length > 2 && display === true && search_data.length > 0) {
             setTokens(search_data)
             setHide({ ...hide, token_1: false })
-        } else if (value.length > 3 && display === false && search_data.length > 0) {
+        } else if (value.length > 2 && display === false && search_data.length > 0) {
             setTokens(search_data)
             setHide({ ...hide, token_2: false })
         } else {

@@ -32,13 +32,13 @@ export default function CurrentStateOB(){
     return(
         <div className="">
            
-            <div className="d-flex justify-content-between">
-            <div className={`${generalModal} col-sm `}>
-                <h4>Asks</h4>
+            <div className="d-flex flex-wrap justify-content-between">
+            <div className={`${generalModal} col-sm bg-dark`}>
+                <h4 className="text-white">Asks</h4>
                 
-            <table className="table table-striped ">
+            <table className="table table-striped table-dark">
                 <thead>
-                    <tr>
+                    <tr >
                         <th>Maker Amount</th>
                         <th>Taker Amount</th>
                         <th>Taker Fees</th>
@@ -50,7 +50,7 @@ export default function CurrentStateOB(){
                     orderBookData?.asks?.map((item:any,index:number)=>{
                        
                         return(
-                            <tr key={index}>
+                            <tr key={index} className="tr">
                                 <td><small>{item.order.makerAmount}</small></td>
                                 <td><small>{item.order.takerAmount}</small></td>
                                 <td><small>{item.order.takerTokenFeeAmount}</small></td>
@@ -62,10 +62,10 @@ export default function CurrentStateOB(){
         </table>
             </div>
             
-            <div className={`${generalModal} col-sm`}>
-                <h4>Bids</h4>
+            <div className={`${generalModal} col-sm bg-dark`}>
+                <h4 className="text-white">Bids</h4>
                 
-            <table className="table table-striped">
+            <table className="table table-striped table-dark">
                 <thead>
                     <tr>
                         <th>Maker Amount</th>
