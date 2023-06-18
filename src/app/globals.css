@@ -30,7 +30,7 @@ body{
     font-weight: bold;
 }
 
-.btnPrimary:active{
+.btnPrimary:focus{
     transition: 0.5s;
     border:none;
     background-color: var(--primaryLight);
