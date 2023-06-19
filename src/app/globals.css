@@ -9,6 +9,17 @@
     --generalRadius:7px;
 }
 
+::-webkit-scrollbar{
+    background-color: var(--primaryDark);
+    width: 10px;
+    border-radius: var(--generalRadius);
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: var(--primaryLight);
+    border-radius: var(--generalRadius);
+}
+
 body{
  margin: 10px;
  padding: 0px;
@@ -62,7 +73,7 @@ body{
 
 
 .dropdownContainer{
-    width: 25em;
+    width: 40%;
     height: 25vh;
     overflow: auto;
     z-index: 1;

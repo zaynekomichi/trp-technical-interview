@@ -36,7 +36,7 @@ export default function LiveOB(){
     return(
         <div className={`${generalModal} bg-dark`}>
                 <h1 className="text-white">Live Order Book</h1>
-            <table className="table table-striped table-dark">
+            <table className="table table-striped table-responsive table-dark">
                 <thead>
                     <tr>
                         <th>Maker Amount</th>

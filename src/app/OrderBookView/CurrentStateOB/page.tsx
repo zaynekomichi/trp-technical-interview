@@ -36,7 +36,7 @@ export default function CurrentStateOB(){
             <div className={`${generalModal} col-sm bg-dark`}>
                 <h4 className="text-white">Asks</h4>
                 
-            <table className="table table-striped table-dark">
+            <table className="table table-striped table-responsive table-dark">
                 <thead>
                     <tr >
                         <th>Maker Amount</th>
@@ -65,7 +65,7 @@ export default function CurrentStateOB(){
             <div className={`${generalModal} col-sm bg-dark`}>
                 <h4 className="text-white">Bids</h4>
                 
-            <table className="table table-striped table-dark">
+            <table className="table table-striped table-responsive table-dark">
                 <thead>
                     <tr>
                         <th>Maker Amount</th>
