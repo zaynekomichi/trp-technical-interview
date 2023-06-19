@@ -23,6 +23,7 @@ export default function CurrentStateOB(){
     const [hide,setHide]=useState<boolean>(false)
 
     useEffect(()=>{
+        setHide(false)
         //close websocket connection
         OrderBookWebsocket().close(1000,"Data not needed")
 
