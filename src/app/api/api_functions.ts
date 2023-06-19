@@ -1,5 +1,5 @@
 import { Token_0X } from "./api_token_keys"
-import { tradingTokens, websocketLink } from "./api_links"
+import { tradingTokens, websocketLink,orderBookLink } from "./api_links"
 import axios from "axios"
 
 //get Order Book Current State
@@ -13,7 +13,7 @@ export const getOrderBook=async(tokenData:any)=>{
           "baseToken":tokenData.token_2.address
         }
       };
-      return axios.get(`https://api.0x.org/orderbook/v1`,config)
+      return axios.get(orderBookLink,config)
 }
 
 
