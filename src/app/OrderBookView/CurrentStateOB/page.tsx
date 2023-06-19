@@ -5,6 +5,7 @@ import { useContext } from "react"
 import { TokenContext } from "../../components/contexts"
 import { generalModal } from "../../components/cssStyles"
 import { error_msg } from "@/app/components/messages"
+import {loading} from "../../components/loadingComp"
 interface orderType{
     order:{
         makerAmount:string,
@@ -19,6 +20,7 @@ interface OrderBookDataType{
 export default function CurrentStateOB(){
     const {currentTokens,setCurrentTokens}:any = useContext(TokenContext)
     const [orderBookData,setOrderBookData] =useState<OrderBookDataType>()
+    const [hide,setHide]=useState<boolean>(false)
 
     useEffect(()=>{
         //close websocket connection
@@ -26,7 +28,7 @@ export default function CurrentStateOB(){
 
         //get orderbook data
         getOrderBook(currentTokens).then(res=>{
-           console.log(res)
+            setHide(true)
            setOrderBookData({...CurrentStateOB, asks:[...res.data.asks.records], bids:[...res.data.bids.records]})
         }).catch(err=>{
           alert(error_msg)
@@ -39,7 +41,17 @@ export default function CurrentStateOB(){
            
             <div className="d-flex flex-wrap justify-content-between">
             <div className={`${generalModal} col-sm bg-dark`}>
-                <h4 className="text-white">Asks</h4>
+                <div className="row">
+                    <div className="col-sm">
+                        <h4 className="text-white">Asks</h4>
+                    </div>
+                    <div className="col-sm text-end" hidden={hide}>
+                        {loading}
+                    </div>
+                    
+                </div>
+             
+
                 
             <table className="table table-striped table-responsive table-dark">
                 <thead>
@@ -68,8 +80,16 @@ export default function CurrentStateOB(){
             </div>
             
             <div className={`${generalModal} col-sm bg-dark`}>
-                <h4 className="text-white">Bids</h4>
+                <div className="row">
+                <div className="col-sm">
+                    <h4 className="text-white">Bids</h4>
+                </div>
                 
+                <div className="col-sm text-end" hidden={hide}>
+                        {loading}
+                    </div>
+                </div>
+              
             <table className="table table-striped table-responsive table-dark">
                 <thead>
                     <tr>

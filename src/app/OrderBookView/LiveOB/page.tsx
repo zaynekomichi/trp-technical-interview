@@ -4,6 +4,7 @@ import { OrderBookWebsocket } from "../../api/api_functions"
 import { useContext } from "react"
 import { TokenContext } from "../../components/contexts"
 import { generalModal } from "../../components/cssStyles"
+import {loading} from "../../components/loadingComp"
 
 
 
@@ -43,7 +44,15 @@ export default function LiveOB() {
 
     return (
         <div className={`${generalModal} bg-dark`}>
-            <h1 className="text-white">Live Order Book</h1>
+            <div className="row">
+                <div className="col-sm">
+                     <h1 className="text-white">Live Order Book</h1>
+                </div>
+                <div className="col-sm text-end">
+                    <p className="text-white">Fetching latest transactions...</p>
+                </div>
+            </div>
+           
             <table className="table table-striped table-responsive table-dark">
                 <thead>
                     <tr>
