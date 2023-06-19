@@ -10,7 +10,3 @@
 -  API Responsiveness 2.5s on average
 - page load???
 
-## Bugs
-
-- most tokens do not carry transactions
-
