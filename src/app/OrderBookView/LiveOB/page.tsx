@@ -46,10 +46,12 @@ export default function LiveOB() {
         <div className={`${generalModal} bg-dark`}>
             <div className="row">
                 <div className="col-sm">
-                     <h1 className="text-white">Live Order Book</h1>
+                     <h1 className="text-white">Live Orders</h1>
                 </div>
                 <div className="col-sm text-end">
-                    <p className="text-white">Fetching latest transactions...</p>
+                    <p className="text-white">Fetching latest transactions </p>
+                    {loading}
+
                 </div>
             </div>
            
