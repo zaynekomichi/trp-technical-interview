@@ -61,6 +61,8 @@ export default function TradingPairView() {
     //switch token positions paying->receiving vice versa
     const SwitchTokens = () => {
         const copyCurrentTokens = { token_1, token_2 }
+        setToken_1(copyCurrentTokens.token_2)
+        setToken_2(copyCurrentTokens.token_1)
         setCurrentTokens({
             token_1: copyCurrentTokens.token_2,
             token_2: copyCurrentTokens.token_1
