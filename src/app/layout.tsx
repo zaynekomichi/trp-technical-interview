@@ -20,6 +20,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  //create global state for switching tokens
   const [currentTokens,setCurrentTokens] = useState({
     token_1:{
       symbol:"ZRX",

@@ -1,0 +1,1 @@
+export const error_msg = "Its not you its us, Please refresh your page!"

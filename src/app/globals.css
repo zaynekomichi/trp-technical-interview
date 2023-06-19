@@ -41,7 +41,7 @@ body{
     font-weight: bold;
 }
 
-.btnPrimary:focus{
+.btnPrimaryNav:focus{
     transition: 0.5s;
     border:none;
     background-color: var(--primaryLight);

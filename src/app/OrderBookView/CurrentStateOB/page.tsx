@@ -4,6 +4,7 @@ import { OrderBookWebsocket, getOrderBook} from "../../api/api_functions"
 import { useContext } from "react"
 import { TokenContext } from "../../components/contexts"
 import { generalModal } from "../../components/cssStyles"
+import { error_msg } from "@/app/components/messages"
 interface orderType{
     order:{
         makerAmount:string,
@@ -20,11 +21,15 @@ export default function CurrentStateOB(){
     const [orderBookData,setOrderBookData] =useState<OrderBookDataType>()
 
     useEffect(()=>{
+        //close websocket connection
+        OrderBookWebsocket().close(1000,"Data not needed")
+
+        //get orderbook data
         getOrderBook(currentTokens).then(res=>{
            console.log(res)
            setOrderBookData({...CurrentStateOB, asks:[...res.data.asks.records], bids:[...res.data.bids.records]})
         }).catch(err=>{
-            console.log(err)
+          alert(error_msg)
         },)
     },[currentTokens])
 

@@ -1,12 +1,12 @@
 "use client"
-import { useState, useEffect } from "react"
-import { generalBtn, generalInput, generalInputSideDisplay, generalModal, searchTokenDropdown, searchTokenDropdownItems } from "../components/cssStyles"
+import { useState, useEffect,useRef } from "react"
+import { generalBtn, generalBtnNav, generalInput, generalInputSideDisplay, generalModal, searchTokenDropdown, searchTokenDropdownItems } from "../components/cssStyles"
 import { search } from "ss-search"
-import { OrderBookWebsocket } from "../api/api_functions"
 import { getTokenList } from "../api/api_functions"
 import { useContext } from "react"
 import { TokenContext } from "../components/contexts"
 import Link from "next/link"
+import { error_msg } from "../components/messages"
 
 interface tokensDataType {
     name: string,
@@ -16,15 +16,30 @@ interface tokensDataType {
 }
 
 export default function TradingPairView() {
-    const { currentTokens, setCurrentTokens }:any= useContext(TokenContext)
-    const [token_1, setToken_1] = useState<string>("")
-    const [token_2, setToken_2] = useState<string>("")
+    const { currentTokens, setCurrentTokens }: any = useContext(TokenContext)
+    const [token_1, setToken_1] = useState<tokensDataType>({
+        name: "",
+        symbol: "",
+        logoURI: "",
+        address: ""
+    })
+    const [token_2, setToken_2] = useState<tokensDataType>({
+        name: "",
+        symbol: "",
+        logoURI: "",
+        address: ""
+    })
     const [hide, setHide] = useState({
         token_1: true,
         token_2: true
     })
-    const [allTokens, setAllTokesns] = useState<Array<any>>([])
+    const [allTokens, setAllTokens] = useState<Array<any>>([])
     const [tokens, setTokens] = useState<Array<tokensDataType>>()
+
+    //use to clear input values
+    //any type to defer erros
+    const token_search_1:any = useRef(null)
+    const token_search_2:any = useRef(null)
 
     const searchTokens = (value: string, display: boolean) => {
         console.log(allTokens)
@@ -43,24 +58,29 @@ export default function TradingPairView() {
         }
     }
 
-    const swapTokens = () => {
+    //switch token positions paying->receiving vice versa
+    const SwitchTokens = () => {
         const copyCurrentTokens = { token_1, token_2 }
-        setToken_1(copyCurrentTokens.token_2)
-        setToken_2(copyCurrentTokens.token_1)
+        setCurrentTokens({
+            token_1: copyCurrentTokens.token_2,
+            token_2: copyCurrentTokens.token_1
+        })
 
     }
 
 
     useEffect(() => {
+        setToken_1(currentTokens.token_1)
+        setToken_2(currentTokens.token_2)
         getTokenList().then((res: any) => {
             console.log(res)
             if (res.status == 200) {
-                setAllTokesns(res.data.tokens)
+                setAllTokens(res.data.tokens)
             } else {
                 console.log(res.status)
             }
         }).catch((err) => {
-            console.log(err)
+            alert(error_msg)
         })
     }, [])
     return (
@@ -74,16 +94,24 @@ export default function TradingPairView() {
                         <div className={generalInputSideDisplay}>
                             <img className="rounded" width="20px" src={currentTokens.token_1.logoURI} />
                         </div>
-                        <input className={generalInput} placeholder="Paying Token" onChange={(e) => { setToken_1(e.target.value); searchTokens(e.target.value, true); }} value={token_1} />
+                        <input className={generalInput} ref={token_search_1} placeholder="Paying Token" onChange={(e) => {  searchTokens(e.target.value, true); }} />
                     </div>
                     <div hidden={hide.token_1} className={searchTokenDropdown}>
                         {
                             tokens?.map((item: tokensDataType, index: number) => {
                                 return (
                                     <div key={index} className={searchTokenDropdownItems} onClick={() => {
-                                        setToken_1(item.symbol);
+                                        setToken_1({
+                                            ...token_1,
+                                            name: item.name,
+                                            symbol: item.symbol,
+                                            logoURI: item.logoURI,
+                                            address: item.address
+                                        });
+
                                         setCurrentTokens({ ...currentTokens, token_1: { symbol: item.symbol, address: item.address, logoURI: item.logoURI } });
                                         setHide({ ...hide, token_1: true });
+                                        token_search_1.current.value = ""
                                     }}>
                                         <div >
                                             <img src={item.logoURI} width="20px" className="rounded" alt={`image of ${item.name} logo`} />
@@ -104,16 +132,23 @@ export default function TradingPairView() {
                         <div className={generalInputSideDisplay}>
                             <img className="rounded" width="20px" src={currentTokens.token_2.logoURI} />
                         </div>
-                        <input className={generalInput} placeholder="Receiving Token" onChange={(e) => { setToken_2(e.target.value); searchTokens(e.target.value, false) }} value={token_2} />
+                        <input className={generalInput} ref={token_search_2} placeholder="Receiving Token" onChange={(e) => {  searchTokens(e.target.value, false) }} />
                     </div>
                     <div hidden={hide.token_2} className={searchTokenDropdown}>
                         {
                             tokens?.map((item: tokensDataType, index: number) => {
                                 return (
                                     <div key={index} className={searchTokenDropdownItems} onClick={() => {
-                                        setToken_2(item.symbol);
+                                        setToken_2({
+                                            ...token_2,
+                                            name: item.name,
+                                            symbol: item.symbol,
+                                            logoURI: item.logoURI,
+                                            address: item.address
+                                        });
                                         setCurrentTokens({ ...currentTokens, token_2: { symbol: item.symbol, address: item.address, logoURI: item.logoURI } });
                                         setHide({ ...hide, token_2: true });
+                                        token_search_2.current.value=""
                                     }}>
                                         <div>
                                             <img src={item.logoURI} width="20px" className="rounded" alt={`image of ${item.name} logo`} />
@@ -134,13 +169,12 @@ export default function TradingPairView() {
             </div>
             <div className="mb-3 text-center">
 
-                <button data-tip-content="Swap Tokens" data-tip-id="tokens" data-tooltip-place="top" className={generalBtn} onClick={() => swapTokens()}>Swap Tokens</button>
+                <button className={generalBtn} onClick={() => SwitchTokens()}>Switch Tokens</button>
 
             </div>
             <div>
-                <Link href="../OrderBookView/CurrentStateOB"><button  className={generalBtn} role="button" data-bs-toggle="button" aria-pressed="true">Current State</button></Link>
-                        {/* close websocket connection */}
-                <Link href="../OrderBookView/LiveOB" onClick={()=>OrderBookWebsocket().close()}><button className={generalBtn} role="button" data-bs-toggle="button" aria-pressed="true">Live Changes</button></Link>
+                <Link href="../OrderBookView/CurrentStateOB"><button className={generalBtnNav} role="button" data-bs-toggle="button" aria-pressed="true">Current State</button></Link>
+                <Link href="../OrderBookView/LiveOB" ><button className={generalBtnNav} role="button" data-bs-toggle="button" aria-pressed="true">Live Changes</button></Link>
             </div>
         </div>
     )
